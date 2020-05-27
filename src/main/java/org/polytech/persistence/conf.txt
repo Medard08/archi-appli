@@ -1,0 +1,34 @@
+package org.polytech;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+
+public class Main {
+	
+	
+	public static void main(String[] args) {
+		
+		String url="jdbc:mysql://localhost:3306/polyfood?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+		String username="medard";
+		String password="medard";
+		
+		try {
+			Connection connection = DriverManager.getConnection(url, username, password);
+			//String sql = "INSERT INTO USERS VALUES('medard','pwd')";
+			String sql = "SELECT * FROM USERS";
+			ResultSet resultSet = connection.createStatement().executeQuery(sql);
+			while(resultSet.next()) {
+				System.out.println(resultSet.getString("username") + " " + resultSet.getString("password"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.print("hello");
+		
+		
+
+	}
+}
